@@ -24,7 +24,7 @@ func configure(rawBaseURL string, maxConcurrency, maxPages int) (*config, error)
 		pages:    make(map[string]int),
 		baseURL:  baseURL,
 		mux:      &sync.Mutex{},
-		ch:       make(chan struct{}, maxConcurrency), // NOTE: Skapa x antal buffert, för att begränsa antal go-routines
+		ch:       make(chan struct{}, maxConcurrency),
 		wg:       &sync.WaitGroup{},
 		maxPages: int(maxPages),
 	}, nil
@@ -42,3 +42,5 @@ func (cfg *config) size() int {
 	defer cfg.mux.Unlock()
 	return len(cfg.pages)
 }
+
+// vim: set ts=4

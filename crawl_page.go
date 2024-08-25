@@ -6,9 +6,7 @@ import (
 )
 
 func (cfg *config) crawlPage(rawCurrentURL string) {
-	//NOTE: Skriv till kanlaen, för att signalera att denna goroutin tagit en av platserna
 	cfg.ch <- struct{}{}
-	//NOTE: Släpp kanalen efteråt. Och gör liknande för WaitGroup
 	defer func() {
 		<-cfg.ch
 		cfg.wg.Done()
@@ -53,7 +51,6 @@ func (cfg *config) crawlPage(rawCurrentURL string) {
 		fmt.Errorf("error getting links from %s - %v\n", rawCurrentURL, err)
 	}
 	for _, link := range links {
-		// NOTE: Höj WaitGroup
 		cfg.wg.Add(1)
 		go cfg.crawlPage(link)
 	}

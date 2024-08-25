@@ -36,7 +36,6 @@ func main() {
 
 	cfg.wg.Add(1)
 	go cfg.crawlPage(rawBaseURL)
-	// NOTE: Vänta tills WaitGroup är på 0
 	cfg.wg.Wait()
 
 	printReport(cfg.pages, rawBaseURL)

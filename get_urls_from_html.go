@@ -31,9 +31,6 @@ func getURLsFromHTML(htmlBody, rawBaseURL string) ([]string, error) {
 						fmt.Printf("error parsing href, %v", err)
 						continue
 					}
-					// if href.Scheme == "javascript:" {
-					// 	continue
-					// }
 					resolvedURL := baseURL.ResolveReference(href)
 					if resolvedURL.Host != baseURL.Host {
 						continue

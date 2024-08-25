@@ -21,3 +21,5 @@ func printReport(pages map[string]int, baseURL string) {
 		fmt.Printf("Found %d internal links to %s\n", pages[k], k)
 	}
 }
+
+// vim: set ts=4
